@@ -13,19 +13,18 @@
 <body>
 
    
-    <table>
-        <tr>    
+    <table id ="tabs">
+         <thead>
             <th>Nama</th>
             <th>Rotation</th>
             <th>Diameter</th>
             <th>Climate</th>
             <th>Gravity</th>
             <th>Population</th>
-            <th>Surface Water</th>
-        </tr>
-        <tr id="mainContent">
-            
-        </tr>
+        </thead>
+      <tbody>   
+
+      </tbody>
 
     </table>
     
@@ -256,16 +255,39 @@
 ]
 
 function tampildata(karObj){
-    var dom = document.querySelector("#mainContent");
-    var nama ="";
+  
+    var rotation ="";
+    var diameter ="";
+    var population ="";
+    var climate ="";
+    var gravity ="";
+    
+    
+    var tbody = document.querySelector("tbody");
+    
+    var k = '<tr>'
     for (let i = 0; i < karObj.length; i++) {
-        console.log(karObj[i].name, karObj[i].climate)
-        nama += karObj[i].name;
-        rotation = karObj[i].rotation_period
-            dom.innerHTML = `<td> + ${nama} + </td>
-            <td>' + rotation + '</td>'
-            `
+        k += '<td>'+ karObj[i].name + '</td>'
+        k += '<td>'+ karObj[i].rotation_period + '</td>'
+        k += '<td>'+ karObj[i].diameter + '</td>'
+        k += '<td>'+ karObj[i].population + '</td>'
+        k += '<td>'+ karObj[i].climate + '</td>'
+        k += '<td>'+ karObj[i].gravity + '</td>'
+        k +='</tr>'
+       
+
+        document.querySelector("tbody").innerHTML = k       
+
+        
+        // data[i] = karObj[i]
+        
+
+       
+    
     } 
+    
+            
+    
    
     // var dom = document.querySelector("#rotation").innerHTML = `${rotation}`;
 }
