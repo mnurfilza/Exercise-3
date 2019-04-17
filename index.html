@@ -15,16 +15,18 @@
    
     <table id ="tabs">
          <thead>
-            <th>Nama</th>
+            <th onclick="Sort()">Nama</th>
             <th>Rotation</th>
             <th>Diameter</th>
             <th>Climate</th>
             <th>Gravity</th>
             <th>Population</th>
+           
         </thead>
       <tbody>   
-
       </tbody>
+
+      <input type="submit" value="Filtering" onclick="FIltering()">
 
     </table>
     
@@ -255,16 +257,7 @@
 ]
 
 function tampildata(karObj){
-  
-    var rotation ="";
-    var diameter ="";
-    var population ="";
-    var climate ="";
-    var gravity ="";
-    
-    
-    var tbody = document.querySelector("tbody");
-    
+
     var k = '<tr>'
     for (let i = 0; i < karObj.length; i++) {
         k += '<td>'+ karObj[i].name + '</td>'
@@ -295,10 +288,17 @@ function tampildata(karObj){
    
     
 
-    function FIltering(params) {
-        
+    function Sort() {
+        var list = document.querySelector("tbody");
+       list.sort()
+        for (let i = 0; i < list.length; i++) {
+            var data = list.querySelector("tr")
+            console.log("test")
+            
+        }
+       
     }
-
+    FIltering()
     tampildata(karObj)
 </script> 
 </html>
