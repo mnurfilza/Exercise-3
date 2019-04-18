@@ -27,8 +27,8 @@
         </thead>
       <tbody id="body">   
       </tbody>
-
-      <input type="submit" value="Filtering" onclick="FIltering()">
+      <input type="number" id="filtering" placeholder="masukan jumlah Data">
+      <input type="submit" value="Filtering" onclick="Filtering()">
 
     </table>
     
@@ -258,6 +258,8 @@
     }
 ]
 
+var data = [];
+
 function tampildata(karObj){
 
     var k = "";
@@ -285,7 +287,7 @@ function tampildata(karObj){
 
         var list = document.getElementById("body");
         var tr = document.querySelectorAll("#content");
-        var data = [];
+        
         for (let i = 0; i < tr.length; i++) {
             
             var td = tr[i].childNodes;
@@ -318,10 +320,25 @@ function tampildata(karObj){
             
 
                 document.querySelector("tbody").innerHTML = k 
-
+                    
             }      
        
     }
+
+    function Filtering() {
+        var jumlah = document.getElementById("filtering").value;
+        var tr = document.querySelectorAll("#content");
+        for (let i = 0; i < jumlah; i++) {
+            console.log(tr[i])
+            
+
+                
+                    
+            }      
+       
+            
+        }
+    Filtering(data)
     Sort()
     tampildata(karObj)
 </script> 
