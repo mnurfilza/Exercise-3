@@ -14,6 +14,8 @@
 
    
     <table id ="tabs">
+
+        <p>Tekan Field Nama Untuk Sorting Data</p>
          <thead>
             <th onclick="Sort()">Nama</th>
             <th>Rotation</th>
@@ -23,7 +25,7 @@
             <th>Population</th>
            
         </thead>
-      <tbody>   
+      <tbody id="body">   
       </tbody>
 
       <input type="submit" value="Filtering" onclick="FIltering()">
@@ -258,47 +260,69 @@
 
 function tampildata(karObj){
 
-    var k = '<tr>'
+    var k = "";
     for (let i = 0; i < karObj.length; i++) {
+        k += '<tr id="content">'
         k += '<td>'+ karObj[i].name + '</td>'
         k += '<td>'+ karObj[i].rotation_period + '</td>'
         k += '<td>'+ karObj[i].diameter + '</td>'
-        k += '<td>'+ karObj[i].population + '</td>'
         k += '<td>'+ karObj[i].climate + '</td>'
         k += '<td>'+ karObj[i].gravity + '</td>'
+        k += '<td>'+ karObj[i].population + '</td>'
         k +='</tr>'
        
 
         document.querySelector("tbody").innerHTML = k       
-
-        
-        // data[i] = karObj[i]
-        
-
-       
     
     } 
     
-            
-    
-   
     // var dom = document.querySelector("#rotation").innerHTML = `${rotation}`;
 }
 
    
-    
 
     function Sort() {
-        var list = document.querySelector("tbody");
-       list.sort()
-        for (let i = 0; i < list.length; i++) {
-            var data = list.querySelector("tr")
-            console.log("test")
+
+        var list = document.getElementById("body");
+        var tr = document.querySelectorAll("#content");
+        var data = [];
+        for (let i = 0; i < tr.length; i++) {
             
+            var td = tr[i].childNodes;
+             nama = td[0].innerHTML;
+             rotation = td[1].innerHTML;
+             diameter = td[2].innerHTML;
+             climate = td[3].innerHTML;
+             gravity = td[4].innerHTML;
+             population = td[5].innerHTML;
+          
+            data.push({name: nama, rotation: rotation, diameter: diameter, climate: climate, gravity: gravity, population: population })
+           
+            // for (let i = 0; i < td.length; i++) {
+            //     console.log(td[i])
+                
+            // }
+           
         }
+            data.sort((a,b)=> (a.name > b.name)? 1: ((b.name > a.name)? -1:0));
+            var k = "";
+            for (let i = 0; i < data.length; i++) {
+                k += '<tr id="content">'
+                k += '<td>'+ data[i].name + '</td>'
+                k += '<td>'+ data[i].rotation + '</td>'
+                k += '<td>'+ data[i].diameter + '</td>'
+                k += '<td>'+ data[i].climate + '</td>'
+                k += '<td>'+ data[i].gravity + '</td>'
+                k += '<td>'+ data[i].population + '</td>'
+                k +='</tr>'
+            
+
+                document.querySelector("tbody").innerHTML = k 
+
+            }      
        
     }
-    FIltering()
+    Sort()
     tampildata(karObj)
 </script> 
 </html>
