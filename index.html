@@ -328,13 +328,11 @@ function tampildata(karObj){
     function Filtering() {
         var jumlah = document.getElementById("filtering").value;
         var tr = document.querySelectorAll("#content");
-        for (let i = 0; i < jumlah; i++) {
-            console.log(tr[i])
-            
-
-                
-                    
-            }      
+        for (let i = tr.length-1; i >= jumlah; i--) {
+               if (tr[i]) {
+                   tr[i].style.display ="none"
+               }
+            }
        
             
         }
